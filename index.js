@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const morgan = require("morgan");
+app.use(express.static("dist")); // middleware para servir archivos estaticos desde la carpeta build
 const Note = require("./models/note"); // importa el modelo Note desde models/note.js
 app.use(cors()); // middleware to enable CORS
 app.use(express.json()); // middleware to parse JSON bodies
@@ -25,6 +26,9 @@ app.use(
   })
 );
 
+app.get("/", (request, response) => {
+  response.send("<h1>Hello World!</h1>");
+});
 
 app.get("/api/notes", (request, response) => {
   Note.find({}).then((notes) => {

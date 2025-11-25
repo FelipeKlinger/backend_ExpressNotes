@@ -7,7 +7,7 @@ if (process.argv.length < 3) {
 
 const password = process.argv[2];
 
-const url = `mongodb://felipe:${password}@clusterfelipeklingerdaw.q1htk.mongodb.net/?appName=ClusterFelipeKlingerDAW`;
+const url = `mongodb+srv://felipe:${password}@clusterfelipeklingerdaw.q1htk.mongodb.net/?appName=ClusterFelipeKlingerDAW`;
 
 mongoose.set("strictQuery", false); // strictQuery es una opción de Mongoose que controla cómo se manejan las consultas que contienen campos no definidos en el esquema. Al establecerlo en false, Mongoose permitirá consultas con campos no definidos sin lanzar un error.
 
