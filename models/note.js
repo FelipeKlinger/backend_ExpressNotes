@@ -18,4 +18,4 @@ noteSchema.set('toJSON', {
   }
 })
 
-module.exports = mongoose.model('Note', noteSchema)
+module.exports = mongoose.model('Note', noteSchema) // Exporta el modelo de Nota para que pueda ser utilizado en otras partes de la aplicación
