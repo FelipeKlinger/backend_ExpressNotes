@@ -1,6 +1,7 @@
 // controllers/notes.js gestiona las rutas relacionadas con las notas
 const notesRouter = require("express").Router(); // Crea un enrutador de Express
 const Note = require("../models/note"); // Importa el modelo de Nota permite interactuar con la colección de notas en la base de datos
+const User = require("../models/users");
 
 // GET /api/notes
 notesRouter.get("/", async (request, response) => {
@@ -22,14 +23,19 @@ notesRouter.get("/:id", async (request, response) => {
 // POST /api/notes
 notesRouter.post("/", async (request, response) => {
   const body = request.body;
+  const user = await User.findById(body.userId);
 
   const note = new Note({
     content: body.content,
     important: body.important || false,
+    user: user.id,
   });
 
   const savedNote = await note.save();
-  response.status(201).json(savedNote);
+  user.notes = user.notes.concat(savedNote._id);
+  await user.save();
+
+  response.status(201).json(savedNote); // Responde al cliente
 });
 
 // DELETE /api/notes/:id

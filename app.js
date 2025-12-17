@@ -29,7 +29,7 @@ app.use(express.json());
 app.use(middleware.requestLogger);
 
 app.use("/api/notes", notesRouter); // Usa el enrutador de notas para las rutas que comienzan con /api/notes
-app.use("api/users", usersRouter); // usa el enrutador de users para las rutas que comienzan con /api/users
+app.use("/api/users", usersRouter); // usa el enrutador de users para las rutas que comienzan con /api/users
 
 app.use(middleware.unknownEndpoint);
 app.use(middleware.errorHandler);
